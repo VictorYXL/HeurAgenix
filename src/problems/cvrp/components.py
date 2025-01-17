@@ -15,7 +15,6 @@ class Solution(BaseSolution):
         for index, route in enumerate(self.routes):
             depot_index = route.index(self.depot)
             rotated_route = route[depot_index:] + route[:depot_index] + [self.depot]
-            route = [self.depot] + route + [self.depot]
             route_string += f"vehicle_{index}: " + "->".join(map(str, rotated_route)) + "\n"
         return route_string
 
@@ -122,7 +121,10 @@ class MergeRoutesOperator(BaseOperator):
 
     def run(self, solution: Solution) -> Solution:
         new_routes = [route[:] for route in solution.routes]
+        source_depot_index = solution.routes[self.source_vehicle_id].index(self.depot)
+        target_depot_index = solution.routes[self.target_vehicle_id].index(self.depot)
+        merge_route = new_routes[self.source_vehicle_id][source_depot_index + 1:] + new_routes[self.source_vehicle_id][:source_depot_index] + new_routes[self.target_vehicle_id][target_depot_index  + 1:] + new_routes[self.target_vehicle_id][:target_depot_index]
         # Append source route to target route, then clear the source route
-        new_routes[self.target_vehicle_id] = new_routes[self.source_vehicle_id] + new_routes[self.target_vehicle_id]
-        new_routes[self.source_vehicle_id] = []
+        new_routes[self.target_vehicle_id] = [solution.depot] + merge_route + [solution.depot]
+        new_routes[self.source_vehicle_id] = [solution.depot]
         return Solution(new_routes, solution.depot)
