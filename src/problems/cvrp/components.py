@@ -121,8 +121,8 @@ class MergeRoutesOperator(BaseOperator):
 
     def run(self, solution: Solution) -> Solution:
         new_routes = [route[:] for route in solution.routes]
-        source_depot_index = solution.routes[self.source_vehicle_id].index(self.depot)
-        target_depot_index = solution.routes[self.target_vehicle_id].index(self.depot)
+        source_depot_index = solution.routes[self.source_vehicle_id].index(solution.depot)
+        target_depot_index = solution.routes[self.target_vehicle_id].index(solution.depot)
         merge_route = new_routes[self.source_vehicle_id][source_depot_index + 1:] + new_routes[self.source_vehicle_id][:source_depot_index] + new_routes[self.target_vehicle_id][target_depot_index  + 1:] + new_routes[self.target_vehicle_id][:target_depot_index]
         # Append source route to target route, then clear the source route
         new_routes[self.target_vehicle_id] = [solution.depot] + merge_route + [solution.depot]
