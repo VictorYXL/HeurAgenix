@@ -15,7 +15,7 @@ total_experiments = [
         "problem": "cvrp",
         "key_item": "total_current_cost",
         "data": ["A-n80-k10.vrp", "B-n78-k10.vrp", "E-n101-k14.vrp", "F-n135-k7.vrp", "M-n200-k17.vrp", "P-n101-k4.vrp", "X-n1001-k43.vrp"],
-        "heuristics": ["nearest_neighbor_99ba", "nearest_neighbor_54a9", "min_cost_insertion_7bfa", "min_cost_insertion_3b2b", "farthest_insertion_ce2b", "farthest_insertion_6308"],
+        "heuristics": ["nearest_neighbor_99ba", "nearest_neighbor_54a9", "min_cost_insertion_7bfa", "min_cost_insertion_3b2b", "farthest_insertion_4e1d", "farthest_insertion_6308"],
         "upper_bound": [1762, 1221, 1067, 1162, 1275, 681, 72355]
     },
     {
