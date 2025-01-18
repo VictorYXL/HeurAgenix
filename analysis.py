@@ -223,22 +223,22 @@ def dump_all_result():
             gpt_hhs = [found_key(os.path.join(test_dir, file, "result.txt"), key_item) for file in os.listdir(test_dir) if file.startswith("gpt_hh.20")]
             if upper_bound:
                 gpt_gap = [round(abs(value - upper_bound) / upper_bound * 100, 2) for value in gpt_hhs]
-                mean_gap = np.mean(gpt_gap)
+                mean_gap = round(np.mean(gpt_gap), 2)
             else:
                 gpt_gap = ["None" for value in gpt_hhs]
                 mean_gap = "None"
             gpt_hh_value_gap = [f"{gpt_hhs[index]}({gpt_gap[index]}%)" for index in range(len(gpt_hhs))]
-            print(f"{problem}, {data}, gpt_hh, {gpt_hh_value_gap}, {np.mean(gpt_hhs)}({mean_gap}%)")
+            print(f"{problem}, {data}, gpt_hh, {np.mean(gpt_hhs)}({mean_gap}%), {gpt_hh_value_gap}")
 
             gpt_evo_hhs = [found_key(os.path.join(test_dir, file, "result.txt"), key_item) for file in os.listdir(test_dir) if file.startswith("gpt_hh.evolved.20")]
             if upper_bound:
                 gpt_evo_gap = [round(abs(value - upper_bound) / upper_bound * 100, 2) for value in gpt_evo_hhs if upper_bound]
-                mean_evo_gap = np.mean(gpt_evo_gap)
+                mean_evo_gap = round(np.mean(gpt_evo_gap), 2)
             else:
                 gpt_evo_gap = ["None" for value in gpt_hhs]
                 mean_evo_gap = "None"
             gpt_evo_hh_value_gap = [f"{gpt_evo_hhs[index]}({gpt_evo_gap[index]}%)" for index in range(len(gpt_evo_hhs))]
-            print(f"{problem}, {data}, gpt_hh, {gpt_evo_hh_value_gap}, {np.mean(gpt_evo_hhs)}({mean_evo_gap}%)")
+            print(f"{problem}, {data}, gpt_hh.evolved, {np.mean(gpt_evo_hhs)}({mean_evo_gap}%), {gpt_evo_hh_value_gap}")
 
             print()
 
