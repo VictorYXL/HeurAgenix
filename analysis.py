@@ -228,7 +228,7 @@ def dump_all_result():
                 gpt_gap = ["None" for value in gpt_hhs]
                 mean_gap = "None"
             gpt_hh_value_gap = [f"{gpt_hhs[index]}({gpt_gap[index]}%)" for index in range(len(gpt_hhs))]
-            print(f"{problem}, {data}, gpt_hh, {np.mean(gpt_hhs)}({mean_gap}%), {gpt_hh_value_gap}")
+            print(f"{problem}, {data}, gpt_hh, {round(np.mean(gpt_hhs), 2)}({mean_gap}%), {gpt_hh_value_gap}")
 
             gpt_evo_hhs = [found_key(os.path.join(test_dir, file, "result.txt"), key_item) for file in os.listdir(test_dir) if file.startswith("gpt_hh.evolved.20")]
             if upper_bound:
@@ -238,7 +238,7 @@ def dump_all_result():
                 gpt_evo_gap = ["None" for value in gpt_hhs]
                 mean_evo_gap = "None"
             gpt_evo_hh_value_gap = [f"{gpt_evo_hhs[index]}({gpt_evo_gap[index]}%)" for index in range(len(gpt_evo_hhs))]
-            print(f"{problem}, {data}, gpt_hh.evolved, {np.mean(gpt_evo_hhs)}({mean_evo_gap}%), {gpt_evo_hh_value_gap}")
+            print(f"{problem}, {data}, gpt_hh.evolved, {round(np.mean(gpt_evo_hhs), 2)}({mean_evo_gap}%), {gpt_evo_hh_value_gap}")
 
             print()
 
